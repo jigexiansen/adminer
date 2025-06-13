@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  adminer:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: adminer
+    environment:
+      - ADMINER_DESIGN=nette
+    volumes:
+      - ./src:/var/www/html
+    restart: unless-stopped
+    networks:
+      - adminer-net
+
+networks:
+  adminer-net:
+    driver: bridge 

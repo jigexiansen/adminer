@@ -1,0 +1,6 @@
+{
+    "name": "adminer/app",
+    "require": {
+        "dg/adminer": "^3.2"
+    }
+} 
