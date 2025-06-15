@@ -66,10 +66,15 @@ lint: ## Lint PHP files
 
 release: ## Build and save image as tar
 	$(MAKE) build
+	mkdir -p dist
 	docker save $(IMAGE_NAME):latest -o dist/adminer-image.tar
 	@echo "Image saved to dist/adminer-image.tar"
 
 install: ## Load image from tar file
+	@if [ ! -f dist/adminer-image.tar ]; then \
+		echo "Error: dist/adminer-image.tar not found. Run 'make release' first."; \
+		exit 1; \
+	fi
 	docker load -i dist/adminer-image.tar
 
 status: ## Show container status
